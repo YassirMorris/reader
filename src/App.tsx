@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useRef } from 'react';
 import './App.css';
+import { ReactEpubViewer } from 'react-epub-viewer';
 
 function App() {
+  const viewerRef = useRef(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Body">
+        <ReactEpubViewer 
+          url={'reader/files/The Heroes.epub'}
+          ref={viewerRef}
+        />
+      </div>
     </div>
   );
 }
