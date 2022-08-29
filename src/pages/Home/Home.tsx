@@ -15,7 +15,6 @@ const Home: FC<HomeProps> = () => {
   const [locations, setLocations] = useState<string[]>([''])
   const [isAvailable, setIsAvailable] = useState<boolean>(false);
   
-  const [previousPage, setPreviousPage] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [totalPage, setTotalPage] = useState<number>(0);
 
@@ -40,13 +39,19 @@ const Home: FC<HomeProps> = () => {
   }, [])
 
   useEffect(() => {
+    if(currentPage && currentPage !== 0 && isAvailable){
+      localStorage.setItem('currentPage', currentPage.toString());
+      console.log('Current page:', currentPage);
+    }
+  }, [currentPage])
+
+  useEffect(() => {
     setTimeout(()=>{
       if(curretBookDetails && viewerRef.current){
         viewerRef.current.setLocation(locations[Number(localStorage.getItem('currentPage'))])
       }
     }, 1000)
   }, [curretBookDetails])
-
 
   const onBookInfoChange = (book: BookType) => {
     setCurrentBookDetails(book);
@@ -56,8 +61,6 @@ const Home: FC<HomeProps> = () => {
     if(totalPage === 0){
       setTotalPage(page.totalPage)
     }
-
-    setPreviousPage(currentPage);
     setCurrentPage(page.currentPage);
   }
 
