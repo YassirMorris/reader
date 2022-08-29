@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "generate-react-cli": "^7.3.0",
     "gh-pages": "^4.0.0"
   }
 }
