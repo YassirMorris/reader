@@ -1,5 +1,6 @@
 export type AvailableBookType = {
     name: string,
     path: string,
-    totalPage: number
+    totalPage: number,
+    chapters: string[]
 }

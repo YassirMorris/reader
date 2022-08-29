@@ -34,7 +34,6 @@ const Home: FC<HomeProps> = () => {
           return;
         }
       }
-      viewerRef.current.nextPage();
     }, 200)
   }, [])
 
@@ -70,7 +69,7 @@ const Home: FC<HomeProps> = () => {
         !isAvailable && <Prompt element={
           <div className={styles.Loading}>
             <ReactLoading type={'spinningBubbles'} color="#fff" width={'8rem'} height={'8rem'}/>
-            <p>Please press left or right arrow key after loading is finished!</p>
+            <p>Please press the right arrow key until you see "{curretBook.chapters[0]}" to avoid issue!</p>
           </div>
         }/>
       }
