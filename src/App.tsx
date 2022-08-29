@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <div className="Body">
         <ReactEpubViewer 
-          url={'reader/files/The Heroes.epub'}
+          url={'https://yassirmorris.github.io/reader/files/The Heroes.epub'}
           ref={viewerRef}
         />
       </div>
