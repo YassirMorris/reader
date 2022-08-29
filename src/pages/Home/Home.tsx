@@ -10,6 +10,13 @@ interface HomeProps {}
 const Home: FC<HomeProps> = () => {
   const [books, setBooks] = useState(AvailableBooks);
   const [locations, setLocations] = useState<string[]>([''])
+
+  
+  const [previousPage, setPreviousPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [totalPage, setTotalPage] = useState<number>(0);
+
+
   const [curretBookDetails, setCurrentBookDetails] = useState<BookType>();
   const [curretBook, setCurrentBook] = useState(books[0]);
   const viewerRef = useRef<any>(null);
@@ -34,33 +41,42 @@ const Home: FC<HomeProps> = () => {
   }
 
   const onPageChange = (page: Page) => {
-    if(page.totalPage > curretBook.totalPage){
-      const realCurrentPage = page.currentPage - curretBook.totalPage;
-      if(realCurrentPage !== 0){
-        localStorage.setItem('currentPage', realCurrentPage.toString())
-        console.log(`${realCurrentPage} / ${page.totalPage}`);
-      }
+    if(totalPage === 0){
+      setTotalPage(page.totalPage)
     }
-    else{
-      if(page.currentPage !== 0){
-        localStorage.setItem('currentPage', page.currentPage.toString())
-        console.log(`${page.currentPage} / ${page.totalPage}`);
-      }
-    }
+
+    setPreviousPage(currentPage);
+    setCurrentPage(page.currentPage);
+
+    // if(page.totalPage > curretBook.totalPage){
+    //   const realCurrentPage = curretBook.totalPage - page.currentPage;
+    //   if(realCurrentPage !== 0){
+    //     localStorage.setItem('currentPage', realCurrentPage.toString())
+    //     console.log(`${realCurrentPage} / ${page.totalPage}`);
+    //   }
+    // }
+    // else{
+    //   if(page.currentPage !== 0){
+    //     localStorage.setItem('currentPage', page.currentPage.toString())
+    //     console.log(`${page.currentPage} / ${page.totalPage}`);
+    //   }
+    // }
   }
 
   return (
     <div className={styles.Home}>
-      <div className="Header">
-        </div>
-        <div className="Body">
-          <ReactEpubViewer
-            url={curretBook.path}
-            ref={viewerRef}
-            onBookInfoChange={onBookInfoChange}
-            onPageChange={onPageChange}
-          />
-        </div>
+      <div className={styles.Header}>
+        <h1>{curretBook.name}</h1>
+        <div className={styles.PageNumber}>{`Page: ${currentPage} / ${totalPage}`}</div>
+      </div>
+      <div className={styles.Body}>
+        <ReactEpubViewer
+          url={curretBook.path}
+          ref={viewerRef}
+          onBookInfoChange={onBookInfoChange}
+          onPageChange={onPageChange}
+        />
+      </div>
     </div>
   )
 };
