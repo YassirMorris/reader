@@ -2,14 +2,31 @@
   width: 100%;
   height: 100%;
 
-  .Header {
-    width: 100%;
+  .Loading {
+    width: 15rem;
+    height: 15rem;
+    gap: 1rem;
     display: flex;
     align-items: center;
-    position: fixed;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  .Header {
+    width: 100%;
+    max-height: 3%;
+    display: flex;
+    align-items: center;
     z-index: 1;
     background-color: #FFFFFF;
     border-bottom: 1px solid #AAA;
+
+    .BookTitle {
+      margin-left: auto;
+      font-size: 1.25rem;
+    }
 
     .PageNumber {
       margin-left: auto;
@@ -19,8 +36,10 @@
 
   .Body {
     width: 100%;
-    height: 100%;
-    position: "relative";
-    height: "100%"
+    height: 97%;
+
+    div {
+      max-height: 100%;
+    }
   }
 }
