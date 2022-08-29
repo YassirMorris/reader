@@ -1,4 +1,5 @@
 export type AvailableBookType = {
     name: string,
-    path: string
+    path: string,
+    totalPage: number
 }

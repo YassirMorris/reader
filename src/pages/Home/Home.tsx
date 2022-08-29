@@ -34,9 +34,18 @@ const Home: FC<HomeProps> = () => {
   }
 
   const onPageChange = (page: Page) => {
-    if((page.currentPage - 8114) > 0){
-      localStorage.setItem('currentPage', (page.currentPage - 8114).toString())
-      console.log(`${page.currentPage - 8114} / ${page.totalPage}`);
+    if(page.totalPage > curretBook.totalPage){
+      const realCurrentPage = page.currentPage - curretBook.totalPage;
+      if(realCurrentPage !== 0){
+        localStorage.setItem('currentPage', realCurrentPage.toString())
+        console.log(`${realCurrentPage} / ${page.totalPage}`);
+      }
+    }
+    else{
+      if(page.currentPage !== 0){
+        localStorage.setItem('currentPage', page.currentPage.toString())
+        console.log(`${page.currentPage} / ${page.totalPage}`);
+      }
     }
   }
 
