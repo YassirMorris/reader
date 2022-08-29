@@ -1,3 +1,9 @@
+/*
+      object-assign
+      (c) Sindre Sorhus
+      @license MIT
+      */
+
 /*!
 
 JSZip v3.10.1 - A JavaScript class for generating and reading zip files
@@ -58,3 +64,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+/** @license React v16.3.2
+       * react.production.min.js
+       *
+       * Copyright (c) 2013-present, Facebook, Inc.
+       *
+       * This source code is licensed under the MIT license found in the
+       * LICENSE file in the root directory of this source tree.
+       */
