@@ -15,8 +15,7 @@ const Home: FC<HomeProps> = () => {
   const [locations, setLocations] = useState<string[]>([''])
   const [isAvailable, setIsAvailable] = useState<boolean>(false);
   
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [totalPage, setTotalPage] = useState<number>(0);
+  const [page, setPage] = useState<Page>({chapterName: '', currentPage: 0, totalPage: 0, startCfi: '', endCfi: '', base: ''});
 
   const [curretBookDetails, setCurrentBookDetails] = useState<BookType>();
   const [curretBook, setCurrentBook] = useState(books[0]);
@@ -38,11 +37,10 @@ const Home: FC<HomeProps> = () => {
   }, [])
 
   useEffect(() => {
-    if(currentPage && currentPage !== 0 && isAvailable){
-      localStorage.setItem('currentPage', currentPage.toString());
-      console.log('Current page:', currentPage);
+    if(page.currentPage !== 0 && isAvailable){
+      localStorage.setItem('currentPage', page.currentPage.toString());
     }
-  }, [currentPage])
+  }, [page.currentPage])
 
   useEffect(() => {
     setTimeout(()=>{
@@ -56,11 +54,8 @@ const Home: FC<HomeProps> = () => {
     setCurrentBookDetails(book);
   }
 
-  const onPageChange = (page: Page) => {
-    if(totalPage === 0){
-      setTotalPage(page.totalPage)
-    }
-    setCurrentPage(page.currentPage);
+  const onPageChange = (newPage: Page) => {
+    setPage(newPage);
   }
 
   return (
@@ -75,7 +70,7 @@ const Home: FC<HomeProps> = () => {
       }
       <div className={styles.Header}>
         <h1 className={styles.BookTitle}>{curretBook.name}</h1>
-        <div className={styles.PageNumber}>{`Page: ${currentPage} / ${totalPage}`}</div>
+        <div className={styles.PageNumber}>{`Page: ${page.currentPage} / ${page.totalPage}`}</div>
       </div>
       <div className={`${styles.Body} ${generalStyles.Unselectable}`}>
         <ReactEpubViewer
